@@ -1,0 +1,15 @@
+﻿  uic QtWidgetsApplication1.ui
+  rcc QtWidgetsApplication1.qrc
+  CEssain.cpp
+  CFillet.cpp
+  CPapillon.cpp
+  CVecteur2D.cpp
+  Jeu.cpp
+  TT.cpp
+  QtWidgetsApplication1.cpp
+  main.cpp
+  moc_QtWidgetsApplication1.cpp
+  moc_Jeu.cpp
+  moc_TT.cpp
+  qrc_QtWidgetsApplication1.cpp
+  QtWidgetsApplication1.vcxproj -> X:\Etude\Première année\ALGO 2\chasse-au-papillon\x64\Debug\QtWidgetsApplication1.exe

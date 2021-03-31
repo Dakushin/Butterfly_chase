@@ -1,0 +1,93 @@
+
+const double pi = 3.14159265359; //!< C'est PI !
+//Solution
+#include "CPapillon.h"
+#include <random>
+using namespace std::chrono;
+using namespace std;
+
+/*!
+ * \param[in] dWorldWidth Largeur de la fenêtre graphique : le papillon s'assure de ne pas sortir de cette espace
+ * \param[in] dWorldHeight Hauteur de la fenêtre graphique : le papillon s'assure de ne pas sortir de cette espace
+ */
+CPapillon::CPapillon(double dWorldWidth, double dWorldHeight)
+    : m_vSpeed{ 0, 0 }
+    , m_ptMax{ dWorldWidth, dWorldHeight }
+    , m_ptPos{ 0, 0 }
+{
+    
+
+
+
+    random_device rd;
+    default_random_engine gen(rd());
+
+    m_ptPos.setX(uniform_int_distribution<>{0, (int)dWorldWidth}(gen));
+    m_ptPos.setY(uniform_int_distribution<>{0, (int)dWorldHeight}(gen));
+
+
+    m_nLifeTimeInSec = uniform_int_distribution<unsigned int>{ 10, 30 }(gen);
+    m_nViewingDistance = uniform_int_distribution<unsigned int>{ 100, 200 }(gen);;
+
+    m_timeBirth = high_resolution_clock::now();
+    m_timeLastMove = high_resolution_clock::now();
+}
+
+/*! Si le papillon ne voit pas le filet (le filet est à une distance supérieure à la valeur \c nViewingDistance définie
+ *  à la construction du papillon) alors il tourne en rond à la vitesse de 250 pixels par secondes et 2 radians par secondes.
+ *  S'il voit le filet, alors il fuit dans la direction opposée en accélérant continuellement de 100 pixels par secondes supplémentaires.
+ *
+ * \param[in] ptNet Position du filet
+ *
+ * \remark Si le papillon est mort, cette fonction fait "chuter" le papillon à la vitesse de 1000 pixels par seconde
+ */
+void CPapillon::MoveAfraidOf(const QPoint& ptNet)
+{
+    //Temps depuis le dernier mouvement exprimé en millisecondes en précisions double
+    duration<float, milli> dur = high_resolution_clock::now() - m_timeLastMove;
+
+    if (isAlive())
+    {
+        QVecteur2D NetToPos{ (m_ptPos - ptNet) };
+        if (NetToPos.Norm() < (double)m_nViewingDistance)
+        {
+            //Est effrayé par le filet
+            m_vSpeed.setNorm(m_vSpeed.Norm() + dur.count() / 10);
+            m_vSpeed.setOrientation(NetToPos.Orientation());
+        }
+        else
+        {
+            m_vSpeed.setNorm(dur.count() / 5);
+            m_vSpeed.setOrientation(m_vSpeed.Orientation() + dur.count() / 500);
+        }
+
+        m_ptPos += m_vSpeed.toPoint();
+
+        if (m_ptPos.x() < 0)
+            m_ptPos.setX(0);
+        if (m_ptPos.y() < 0)
+            m_ptPos.setY(0);
+        if (m_ptPos.x() > m_ptMax.x())
+            m_ptPos.setX(m_ptMax.x());
+        if (m_ptPos.y() > m_ptMax.y())
+            m_ptPos.setY(m_ptMax.y());
+
+    }
+    else
+       m_ptPos += QPoint{ 0, 1 }*dur.count();
+
+    m_timeLastMove = high_resolution_clock::now();
+}
+
+/*! Vérifie si le papillon est toujours vivant en comprarant sa durée de vie avec le temps écoulé depuis la création de l'objet.
+ *
+ * \return \c true si le papillon est toujours vivant, \c false sinon.
+ */
+bool CPapillon::isAlive() const
+{
+    high_resolution_clock::duration dur = high_resolution_clock::now() - m_timeBirth;
+    if (dur > seconds(m_nLifeTimeInSec))
+        return false;
+    else
+        return true;
+}

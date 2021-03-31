@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/QtWidgetsApplication1">
+        <file>butterfly.png</file>
+        <file>butterfly-net-left.png</file>
+        <file>butterfly-net-right.png</file>
+        <file>grass.png</file>
+    </qresource>
+</RCC>

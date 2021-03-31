@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Jeu</class>
+ <widget class="QMainWindow" name="Jeu">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>760</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1280</width>
+    <height>760</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1280</width>
+    <height>760</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Jeu</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">background: url(&quot;grass.png&quot;) repeat-y;</string>
+   </property>
+   <widget class="QLabel" name="Textpapillon">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>451</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Vous avez attrapé X Papillons</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1280</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuMode_de_jeu">
+    <property name="title">
+     <string>Mode de jeu</string>
+    </property>
+    <widget class="QMenu" name="menuMode_multyplicateur">
+     <property name="title">
+      <string>Mode multyplicateur</string>
+     </property>
+     <addaction name="actionx1"/>
+     <addaction name="actionx2"/>
+     <addaction name="actionx3"/>
+    </widget>
+    <addaction name="actionMode_rapide"/>
+    <addaction name="menuMode_multyplicateur"/>
+    <addaction name="actionMode_Contre_la_montre"/>
+   </widget>
+   <widget class="QMenu" name="menuQuitter">
+    <property name="title">
+     <string>Quitter</string>
+    </property>
+    <addaction name="actionVraiment_quitter"/>
+   </widget>
+   <addaction name="menuMode_de_jeu"/>
+   <addaction name="menuQuitter"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionVraiment_quitter">
+   <property name="text">
+    <string>Vraiment quitter</string>
+   </property>
+  </action>
+  <action name="actionMode_rapide">
+   <property name="text">
+    <string>Mode rapide</string>
+   </property>
+  </action>
+  <action name="actionx1">
+   <property name="text">
+    <string>x1</string>
+   </property>
+  </action>
+  <action name="actionx2">
+   <property name="text">
+    <string>x2</string>
+   </property>
+  </action>
+  <action name="actionx3">
+   <property name="text">
+    <string>x3</string>
+   </property>
+  </action>
+  <action name="actionMode_Contre_la_montre">
+   <property name="text">
+    <string>Mode Contre-la-montre</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>actionVraiment_quitter</sender>
+   <signal>triggered()</signal>
+   <receiver>Jeu</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>639</x>
+     <y>379</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionMode_rapide</sender>
+   <signal>triggered()</signal>
+   <receiver>Jeu</receiver>
+   <slot>ModeRapide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>639</x>
+     <y>379</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionx1</sender>
+   <signal>triggered()</signal>
+   <receiver>Jeu</receiver>
+   <slot>Multiplicateurx1()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>639</x>
+     <y>379</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionx2</sender>
+   <signal>triggered()</signal>
+   <receiver>Jeu</receiver>
+   <slot>Multiplicateurx2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>639</x>
+     <y>379</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionx3</sender>
+   <signal>triggered()</signal>
+   <receiver>Jeu</receiver>
+   <slot>Multiplicateurx3()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>639</x>
+     <y>379</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionMode_Contre_la_montre</sender>
+   <signal>triggered()</signal>
+   <receiver>Jeu</receiver>
+   <slot>TTini()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>639</x>
+     <y>379</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>ModeRapide()</slot>
+  <slot>Multiplicateurx1()</slot>
+  <slot>Multiplicateurx2()</slot>
+  <slot>Multiplicateurx3()</slot>
+  <slot>TTini()</slot>
+ </slots>
+</ui>
